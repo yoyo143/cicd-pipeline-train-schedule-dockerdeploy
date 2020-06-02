@@ -1,8 +1,8 @@
 pipeline {
   environment {
     registry = "rajendrakumarm/docker"
-    registryCredential = 'yoyo143'
-    dockerImage = 'https://github.com/yoyo143/cicd-pipeline-train-schedule-dockerdeploy.git'
+    registryCredential = 'docker_hub_login'
+    dockerImage = 'rajendrakumarm/docker'
   }
   agent any
   stages {
@@ -31,7 +31,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
          script {
-            docker.withRegistry( '', registryCredential ) {
+            docker.withRegistry( 'docker_hub_login', registryCredential ) {
             dockerImage.push()
           }
         }
