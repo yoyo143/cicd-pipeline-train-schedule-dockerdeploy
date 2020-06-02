@@ -43,14 +43,14 @@ pipeline {
                  input 'Deploy To Production?'
                  milestone(1)
                 script {
-                    sh "sshpass -p 'Mummy@786' -v ssh -o StrictHostKeyChecking=no root@prod_ip \"docker pull rajendrakumarm/train-schedule:${env.BUILD_NUMBER}\""
+                    sh "sshpass -p 'Mummy@786' -v ssh -o StrictHostKeyChecking=no root@192.168.56.107 \"docker pull rajendrakumarm/train-schedule:${env.BUILD_NUMBER}\""
                     try  { 
-                        sh "sshpass -p 'Mummy@786' -v ssh -o StrictHostKeyChecking=no root@prod_ip \"docker stop train-schedule\""
-                        sh "sshpass -p 'Mummy@786' -v ssh -o StrictHostKeyChecking=no root@prod_ip \"docker rm train-schedule\""
+                        sh "sshpass -p 'Mummy@786' -v ssh -o StrictHostKeyChecking=no root@192.168.56.107 \"docker stop train-schedule\""
+                        sh "sshpass -p 'Mummy@786' -v ssh -o StrictHostKeyChecking=no root@192.168.56.107 \"docker rm train-schedule\""
                     } catch (err) {
                         echo: 'caught error: $err'
                     }
-                    sh "sshpass -p 'Mummy@786' -v ssh -o StrictHostKeyChecking=no root@prod_ip \"docker run --restart always --name train-schedule -p 8080:8080 -d  rajendrakumarm/train-schedule:${env.BUILD_NUMBER}\""
+                    sh "sshpass -p 'Mummy@786' -v ssh -o StrictHostKeyChecking=no root@192.168.56.107 \"docker run --restart always --name train-schedule -p 8080:8080 -d  rajendrakumarm/train-schedule:${env.BUILD_NUMBER}\""
                     }
                 }
             }
