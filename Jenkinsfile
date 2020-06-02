@@ -5,7 +5,6 @@ pipeline {
     dockerImage = 'https://github.com/yoyo143/skill-sample-nodejs-consumable-hello-world.git'
   }
   agent any
-  tools {nodejs "node" }
   stages {
     stage('Cloning Git') {
       steps {
