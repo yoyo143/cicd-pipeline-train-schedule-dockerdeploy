@@ -34,10 +34,7 @@ pipeline {
 	 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')])
          script {
 	       sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@prod_ip \"docker pull rajendrakumarm/train-schedule:${env.BUILD_NUMBER}\""
-               catch (err) {
-                        echo: 'caught error: $err'
-                       }
-                    sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@prod_ip \"docker run --restart always --name train-schedule -p 8080:8080 -d  rajendrakumarm/train-schedule:${env.BUILD_NUMBER}\""
+               sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@prod_ip \"docker run --restart always --name train-schedule -p 8080:8080 -d  rajendrakumarm/train-schedule:${env.BUILD_NUMBER}\""
             docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }
