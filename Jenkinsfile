@@ -1,14 +1,14 @@
 pipeline {
   environment {
     registry = "rajendrakumarm/docker"
-    registryCredential = 'yoyo143'
-    dockerImage = 't'
+    registryCredential = 'docker_hub_login'
+    dockerImage = 'rajendrakumarm/docker'
   }
   agent any
   stages {
     stage('Cloning Git') {
       steps {
-        git ''
+        git 'https://github.com/yoyo143/cicd-pipeline-train-schedule-dockerdeploy.git'
       }
     }
     stage('Build') {
