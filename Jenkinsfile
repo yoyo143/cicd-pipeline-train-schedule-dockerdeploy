@@ -2,7 +2,7 @@ pipeline {
   environment {
     registry = "rajendrakumarm/docker"
     registryCredential = 'yoyo143'
-    dockerImage = 'https://github.com/yoyo143/skill-sample-nodejs-consumable-hello-world.git'
+    dockerImage = 'https://github.com/yoyo143/cicd-pipeline-train-schedule-dockerdeploy.git'
   }
   agent any
   stages {
