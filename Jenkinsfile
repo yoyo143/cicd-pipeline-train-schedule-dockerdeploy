@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git ''
+        git 'https://github.com/yoyo143/cicd-pipeline-train-schedule-dockerdeploy.git'
       }
     }
     stage('Build') {
